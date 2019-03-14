@@ -1,11 +1,12 @@
-function isEqualArray(baseArray){
-	var compareArray = [];
-	for(var i = 0; i < baseArray.length; ++i){
-		if (compareArray.indexOf(baseArray[i]) !== -1){
-            return true;
+function isEqualArray(array){
+	var currentElement = array[0];
+	for(var i = 1; i < array.length; ++i){
+		if (currentElement === array[i]){
+            currentElement = array[i];
+        } else { 
+        	return false;
         }
-        compareArray.push(baseArray[i]);
 	}
-	return false;
+	return true;
 }
 module.exports = isEqualArray;
