@@ -9,16 +9,16 @@ var lastEmptySpacePos = emptySpacePos;
 } else if(str[1] === ' ') { 
 var secondIndex = str[2]; 
 currentStr += str.slice(lastEmptySpacePos + 2, str.length); 
-var resultStr = str[0].toLowerCase() + secondIndex.toUpperCase() + currentStr.slice(1, currentStr.length) 
+var resultStr = str[0].toLowerCase() + secondIndex.toUpperCase() + currentStr.slice(1, currentStr.length)
 return resultStr; 
 } else { 
-currentStr += str.slice(lastEmptySpacePos + 2, str.length); 
-resultStr = str[0].toLowerCase() + str[1] + currentStr.slice(1, currentStr.length) 
+currentStr += str.slice(lastEmptySpacePos + 2, str.length).toLowerCase(); 
+resultStr = str[0].toLowerCase() + str[1] + currentStr.slice(1, currentStr.length)
 return resultStr; 
 } 
 var bigLetter = str[emptySpacePos + 1].toUpperCase(); 
-currentStr += str.slice(curPosition +1, emptySpacePos) + bigLetter; 
+currentStr += str.slice(curPosition +1, emptySpacePos).toLowerCase() + bigLetter; 
 curPosition = emptySpacePos + 1; 
 } 
-} 
+}
 module.exports = lowerCamelCaseStr;
