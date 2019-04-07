@@ -1,0 +1,52 @@
+ div{
+ 	width: 98%;
+ 	height: 200px;
+ 	margin-bottom: 20px;
+ }
+ .first_method {
+    background: #60B88D;
+    box-shadow: 5px 5px 0 #90CDAF, 10px 10px 0 #BFE3D1;
+   }
+   .second_method {
+	background: #60B88D;
+	position: relative;
+   }
+   .second_method::after, .second_method::before {
+	content: '';
+	position: absolute;
+	width: 100%; height: 100%;
+	z-index: -1;
+   }
+   .second_method::after {
+	background: #90CDAF;
+	top: 5px; left: 5px;
+   }
+   .second_method::before {
+	background: #BFE3D1;
+	top: 10px; left: 10px;
+   }
+   .third_method {
+   	position: relative;
+   }
+   .third_method_nested1{
+   	position: absolute;
+   	width: 100%;
+   	background: #60B88D;
+   	z-index: 3;
+   }
+   .third_method_nested2{
+   	position: absolute;
+   	width: 100%;
+   	background: #90CDAF;
+   	top: 5px;
+   	left: 5px;
+   	z-index: 2;
+   }
+   .third_method_nested3{
+   	position: absolute;
+   	width: 100%;
+   	background: #BFE3D1;
+   	top: 10px;
+   	left: 10px;
+   	z-index: 1;
+   }
