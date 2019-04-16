@@ -1,0 +1,18 @@
+.title_table{
+	background: #e3eaf3;
+	text-transform: uppercase;
+	color: grey;
+	font-family: helvetica;
+	font-size: 12px;
+	padding: 5px;
+}
+.cell_table{
+	font-family: helvetica;
+	color: grey;
+	font-size: 12px;
+	text-align: center;
+	padding: 10px;
+}
+.cell_table:first-child{
+	text-transform: capitalize;
+}

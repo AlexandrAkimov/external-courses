@@ -1,0 +1,42 @@
+form{
+	width: 500px;
+	position: relative;
+}
+.required_text{
+	color: red;
+}
+textarea{
+	width: 167px;
+}
+.input_form{
+	position: absolute;
+	right: 200px;
+}
+.block_triangle{
+	position: absolute;
+	right: 0;
+	top: -5px;
+	width: 150px;
+	height: 30px;
+	color: white;
+	background: red;
+}
+.block_triangle::before{
+	content: '';
+	position: absolute;
+	border: 7px solid transparent;
+	border-right: 7px solid red;
+	left: -14px;
+	top: 25%;
+}
+.email_block{
+	position: relative;
+}
+.website_block{
+	position: relative;
+}
+.block_triangle_text{
+	position: absolute;
+	left: 25px;
+	top: -10px;
+}

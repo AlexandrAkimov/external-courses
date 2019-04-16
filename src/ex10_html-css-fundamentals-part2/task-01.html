@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>task-01</title>
+	<link rel="stylesheet" type="text/css" href="task-01.css">
+</head>
+<body>
+	<form class="form" action="http://httpbin.org/post" method="POST">
+		<section class="personal_data">
+			<h2 class="title">Personal Data</h2>
+			<div class="block_form">
+				<p>	
+					<label class="label_form">Surname</label>
+					<input class="input_form" type="text" name="user_name">
+				</p>
+				<p>
+					<label class="label_form">First Name</label>
+					<input class="input_form" type="text">
+				</p>
+				<p>
+					<label class="label_form">Middle Name</label>
+					<input class="input_form" type="text">
+				</p>
+				<p>
+					<label class="label_form">You are</label>
+					<input class="input_form" type="radio" value="male">
+					<label class="label_form">male</label>
+					<input class="input_form" type="radio" value="female">
+					<label class="label_form">female</label>
+				</p>
+				<p>
+					<label class="label_form">Age</label>
+					<input class="input_form" type="number" min="18" max="101">
+				</p>
+				<p>
+					<label class="label_form">Country of Residence</label>
+					<select class="select_form" multiple>
+						<option class="option_form" selected>Russia</option>
+						<option class="option_form">UK</option>
+						<option class="option_form">USA</option>
+						<option class="option_form">Germany</option>
+						<option class="option_form">Italy</option>
+						<option class="option_form">Canada</option>
+					</select>
+				</p>
+				<p>
+					<label class="label_form">City</label>
+					<input class="input_form" type="checkbox" value="Ryazan">
+					<label class="label_form">Ryazan</label>
+					<input class="input_form" type="checkbox" value="Moscow">
+					<label class="label_form">Moscow</label>
+				</p>
+				<p>
+					<label class="label_form">Photography</label>
+					<input class="input_form" type="file">
+				</p>
+				<p>
+					<label class="label_form">Title</label>
+					<select class="select_form" multiple>
+						<optgroup label="Technologies">
+							<option class="option_form" selected>Web Master</option>
+							<option class="option_form">Database Administrator</option>
+							<option class="option_form">Computer-Aided design</option>
+						</optgroup>
+						<optgroup label="Finance">
+							<option class="option_form" selected>Economic Planning</option>
+							<option class="option_form">Management accounting</option>
+							<option class="option_form">Budgeting and planning</option>
+						</optgroup>
+					</select>
+				</p>
+				<p>
+					<label class="label_form">Salary</label>
+					<input type="range" min="0" max="100" step="1" value="50">
+				</p>
+				<p>
+					<textarea class="textarea_form" placeholder="Tell us about youself..."></textarea>
+				</p>
+			</div>
+		</section>
+		<section class="personal_data2">
+			<h2 class="title title2">Contact Information</h2>
+			<div class="block_form">
+				<p>	
+					<label class="label_form">Site</label>
+					<input class="input_form" type="url">
+				</p>
+				<p>	
+					<label class="label_form">Email</label>
+					<input class="input_form" type="email">
+				</p>
+				<p>	
+					<label class="label_form">Phone</label>
+					<input class="input_form" type="tel">
+				</p>
+			</div>
+		</section>
+		<p>	
+			<label class="label_form">Password</label>
+			<input class="input_form" required type="password">
+		</p>
+		<p>	
+			<input class="input_form" type="submit">
+			<input class="input_form" type="reset">
+		</p>	
+	</form>
+</body>
+</html>
