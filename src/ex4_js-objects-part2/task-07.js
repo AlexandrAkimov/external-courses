@@ -1,6 +1,7 @@
-function addTriplePoint(str, num) { 
+function addTriplePoint(str, num) {
+	var resStr;
 	if(str.length > num){ 
-		var resStr = str.slice(0, num - 1) + '…';
+		resStr = str.slice(0, num - 1) + '…';
 	} 
 	return resStr;
 } 
