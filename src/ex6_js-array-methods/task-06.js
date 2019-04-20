@@ -1,11 +1,11 @@
-function isReduce(arr, callback, initialValue) {
+function calculateValueFromArray(arr, callback, initialValue) {
 	var result = 0;
 	var newArray = [];
 	var saveArrZeroItem = arr[0];
 	var startValue = initialValue;
 	var array = arr;
 	for (var i = 0; i < array.length; i++) {
-		if(initialValue !== undefined){
+		if(initialValue){
  			result = callback (startValue, array[i] ,i, array);
  			startValue = result;
 		} else {
@@ -13,7 +13,7 @@ function isReduce(arr, callback, initialValue) {
 			array[0] = result;
 		} 
 	}
-	if(initialValue !== undefined) return result;
+	if(initialValue) return result;
 	return result - saveArrZeroItem;
 } 
 function callReduce(prev, item, index, arr){
@@ -21,4 +21,4 @@ function callReduce(prev, item, index, arr){
 	var current = previousValue += item;
 	return current;
 }
-module.exports = isReduce;
+module.exports = calculateValueFromArray;

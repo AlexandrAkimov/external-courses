@@ -1,4 +1,4 @@
-function isFilterArray(arr, callback) {
+function filtersArrayElementsToNewArray(arr, callback) {
 	var result = 0;
 	var newArray = [];
 	for (var i = 0; i < arr.length; i++) { 
@@ -10,4 +10,4 @@ function isFilterArray(arr, callback) {
 function callFilter(item, index, arr){ 
 	return item * index - arr.length;
 }
-module.exports = isFilterArray;
+module.exports = filtersArrayElementsToNewArray;

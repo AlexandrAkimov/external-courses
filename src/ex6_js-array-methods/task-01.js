@@ -1,13 +1,13 @@
-function isSlice(array, begin, end){
+function copyOfSliceMethodArray(array, begin, end){
 	var copyArray = [];
 	var startPos = begin;
 	var finishPos = end;
-	if(startPos === undefined && finishPos === undefined) copyArray = array;
+	if(!startPos && !finishPos) copyArray = array;
 	for(var i = 0; i < array.length; i++){
 		if (startPos < 0 && startPos !== finishPos){
 			copyArray.push(array[array.length + startPos]);
 			startPos++;
-		} else if (finishPos === undefined && startPos < array.length){
+		} else if (!finishPos && startPos < array.length){
 			copyArray.push(array[startPos]);
 			startPos++;
 		} else if (startPos < finishPos && startPos < array.length) {
@@ -17,4 +17,4 @@ function isSlice(array, begin, end){
 	}
 	return copyArray;
 }
-module.exports = isSlice;
+module.exports = copyOfSliceMethodArray;

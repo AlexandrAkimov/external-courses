@@ -1,4 +1,4 @@
-function isMapArray(arr, callback) {
+function transformsArrayIntoNewArray(arr, callback) {
 	var result = 0;
 	var newArray = [];
 	for (var i = 0; i < arr.length; i++) { 
@@ -10,4 +10,4 @@ function isMapArray(arr, callback) {
 function callMap(item, index, arr){ 
 	return item * index - arr.length;
 }
-module.exports = isMapArray;
+module.exports = transformsArrayIntoNewArray;
