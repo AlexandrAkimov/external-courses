@@ -1,4 +1,4 @@
-function events(){
+function toggleMenu(){
 	var topList = document.getElementById('top_list_block');
 	var topMenu = document.getElementById('top_menu');
 	var item = document.querySelector('.top_list'); 
@@ -10,25 +10,25 @@ function events(){
 		topMenu.style.borderTop = '1px solid #fff'	
 		}
 	}
-	function shadow(){
+	function addItemShadow(){
 		topMenu.style.boxShadow = "0 0 10px rgba(0,0,0,0.5)"
 	}
-	function disShadow(){
+	function removeItemShadow(){
 		topMenu.style.boxShadow = "none";
 	}
 	
-	function itemHover(e){
+	function setItemBackground(e){
 		var event = e;
 		event.target.style.background = '#03a9f5';
 	}
-	function itemHideHover(e){
+	function restoreItemBackground(e){
 		var event = e;
 		event.target.style.background = '#35baf5';
 	}	
 	topMenu.addEventListener('click', show);	
-	item.addEventListener('mouseover', itemHover);
-	item.addEventListener('mouseout', itemHideHover);
-	topMenu.addEventListener('mouseover', shadow);
-	topMenu.addEventListener('mouseout', disShadow);
+	item.addEventListener('mouseover', setItemBackground);
+	item.addEventListener('mouseout', restoreItemBackground);
+	topMenu.addEventListener('mouseover', addItemShadow);
+	topMenu.addEventListener('mouseout', removeItemShadow);
 }
-events();
+toggleMenu();
