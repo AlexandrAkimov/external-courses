@@ -1,8 +1,10 @@
 function Hangman(word) {
-  var arrWord = new Array(word.length).fill('_');
-  this.arrWord = arrWord;
-  this.errors = 6;
-  this.incorrectSymbols = [];
+  this.newArray = function(){
+    var arrWord = new Array(word.length).fill('_');
+    this.incorrectSymbols = [];
+    this.arrWord = arrWord;
+    this.errors = 6;
+  }
   this.guess = function (letter) {
     var i;
     if (this.errors) {
@@ -29,10 +31,7 @@ function Hangman(word) {
   }
   this.startAgain = function (newWord) {
     var arrWord = [];
-    arrWord = new Array(word.length).fill('_');
-    this.arrWord = arrWord;
-    this.errors = 6;
-    this.incorrectSymbols = [];
+    this.newArray();
     return this;
   }
   this.getGuessedString = function () {
