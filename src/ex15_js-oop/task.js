@@ -1,25 +1,26 @@
 (function () {
+  'use strict';
   var basicCalculator = {
     add: function (sum) {
-      if (sum) {
+      if (sum && !isNaN(sum)) {
         this.result += sum;
       }
       return this;
     },
     subtract: function (sub) {
-      if (sub) {
+      if (sub && !isNaN(sub)) {
         this.result -= sub;
       }
       return this;
     },
     divide: function (div) {
-      if (div) {
+      if (div && !isNaN(div)) {
         this.result /= div;
       }
       return this;
     },
     multiply: function (mul) {
-      if (mul) {
+      if (mul && !isNaN(mul)) {
         this.result *= mul;
       }
         return this;
@@ -29,7 +30,7 @@
       return this; 
     },   
     setState: function (state){
-      if (state) {
+      if (state && !isNaN(state)) {
         this.result = state;
       }
       return this;
@@ -72,28 +73,28 @@
 
   Object.setPrototypeOf(programmingCalculator, basicCalculator); 
 
-  function SimpleCalc (type, brandNameCalc) {
+  function basicCalculatorPrototype (type, brandNameCalc) {
     this.result = 0;
     this.type = type;
     this.brandNameCalc = brandNameCalc;
   }
   function EngineerCalc (type, brandNameCalc) {
-    SimpleCalc.apply(this, arguments);
+    basicCalculatorPrototype.apply(this, arguments);
   }
   function BookerCalc (type, brandNameCalc, dollarRate) {
-    SimpleCalc.apply(this, arguments);
+    basicCalculatorPrototype.apply(this, arguments);
     this.dollarRate = dollarRate;
   }
   function ProgCalc (type, brandNameCalc) {
-    SimpleCalc.apply(this, arguments);
+    basicCalculatorPrototype.apply(this, arguments);
   }
 
-  SimpleCalc.prototype = basicCalculator;
+  basicCalculatorPrototype.prototype = basicCalculator;
   EngineerCalc.prototype = trigonometricCalculator;
   BookerCalc.prototype = bookerCalculator;
   ProgCalc.prototype = programmingCalculator;
 
-  var basicCalc = new SimpleCalc ('pocket', 'citizen');
+  var basicCalc = new basicCalculatorPrototype ('pocket', 'citizen');
   basicCalc.add(100).multiply(2).divide(20).reset().subtract(1);
   console.log('Результат вычисления простого калькулятора: ' + basicCalc.result);
 
