@@ -1,26 +1,30 @@
 (function () {
   'use strict';
+  //Polyfill Number.isFinite() for IE
+  function numberIsFinite(value){
+  return typeof value === "number" && isFinite(value);
+  }
   var basicCalculator = {
     add: function (sum) {
-      if (sum && isFinite(sum)) {
+      if (sum && numberIsFinite(sum)) {
         this.result += sum;
       }
       return this;
     },
     subtract: function (sub) {
-      if (sub && isFinite(sub)) {
+      if (sub && numberIsFinite(sub)) {
         this.result -= sub;
       }
       return this;
     },
     divide: function (div) {
-      if (div && isFinite(div)) {
+      if (div && numberIsFinite(div)) {
         this.result /= div;
       }
       return this;
     },
     multiply: function (mul) {
-      if (mul && isFinite(mul)) {
+      if (mul && numberIsFinite(mul)) {
         this.result *= mul;
       }
         return this;
@@ -30,7 +34,7 @@
       return this; 
     },   
     setState: function (state){
-      if (state && isFinite(state)) {
+      if (state && numberIsFinite(state)) {
         this.result = state;
       }
       return this;
