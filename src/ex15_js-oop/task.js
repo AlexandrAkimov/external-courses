@@ -6,25 +6,25 @@
   }
   var basicCalculator = {
     add: function (sum) {
-      if (sum && numberIsFinite(sum)) {
+      if (numberIsFinite(sum)) {
         this.result += sum;
       }
       return this;
     },
     subtract: function (sub) {
-      if (sub && numberIsFinite(sub)) {
+      if (numberIsFinite(sub)) {
         this.result -= sub;
       }
       return this;
     },
     divide: function (div) {
-      if (div && numberIsFinite(div)) {
+      if (numberIsFinite(div)) {
         this.result /= div;
       }
       return this;
     },
     multiply: function (mul) {
-      if (mul && numberIsFinite(mul)) {
+      if (numberIsFinite(mul)) {
         this.result *= mul;
       }
         return this;
@@ -34,7 +34,7 @@
       return this; 
     },   
     setState: function (state){
-      if (state && numberIsFinite(state)) {
+      if (numberIsFinite(state)) {
         this.result = state;
       }
       return this;
