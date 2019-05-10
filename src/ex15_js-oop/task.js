@@ -2,25 +2,25 @@
   'use strict';
   var basicCalculator = {
     add: function (sum) {
-      if (sum && !isNaN(sum)) {
+      if (sum && isFinite(sum)) {
         this.result += sum;
       }
       return this;
     },
     subtract: function (sub) {
-      if (sub && !isNaN(sub)) {
+      if (sub && isFinite(sub)) {
         this.result -= sub;
       }
       return this;
     },
     divide: function (div) {
-      if (div && !isNaN(div)) {
+      if (div && isFinite(div)) {
         this.result /= div;
       }
       return this;
     },
     multiply: function (mul) {
-      if (mul && !isNaN(mul)) {
+      if (mul && isFinite(mul)) {
         this.result *= mul;
       }
         return this;
@@ -30,7 +30,7 @@
       return this; 
     },   
     setState: function (state){
-      if (state && !isNaN(state)) {
+      if (state && isFinite(state)) {
         this.result = state;
       }
       return this;
