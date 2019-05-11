@@ -1,0 +1,22 @@
+body{
+	font: 1em/1.4em Tahoma, Arial, Helvetica, sans-serif;
+}
+pre{
+	background: url("http://www.spletnik.ru/img/__post/f1/f17f3f28da4a51e252113718dcf2e007_159.jpg");
+}
+div{
+	width: 500px;
+}
+dl{
+	width: 50%;
+	background: green;
+}
+ol{
+	background: red;
+	height: 8rem;
+}
+p{
+	font-family: helvetica;
+	font-weight: bold;
+	font-size: 1em;
+}
