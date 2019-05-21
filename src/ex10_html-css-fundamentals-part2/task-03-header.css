@@ -9,6 +9,9 @@ body{
 	max-width: 1169px;
 	margin: 0 auto;
 }
+.wrapper_nav{
+	border-top: 1px solid grey;
+}
 .header{
 	display: flex;
 	justify-content: space-between;
@@ -16,47 +19,10 @@ body{
 	margin-bottom: 61px;
 }
 /*Mobile menu in header*/
-.menu_nav_mob{
+.fa-bars{
+	color: #3687c4;
+	font-size: 50px;
 	display: none;
-}
-.menu_nav_mob:hover .menu_navmob_item{
-	display: block;
-	transition: .3s;
-}
-.navmob_bur{
-	position: relative;
-}
-.navmob_line{
-	border: 3px solid #3687c4;
-	width: 34px;
-	margin-bottom: 7px;
-}
-.menu_navmob_item{
-	display: none;
-	position: absolute;
-	width: 200px;
-	border-left: 10px solid transparent;
-	list-style: none;
-	padding: 0;
-	margin: 0;
-	top: 0;
-	left: 39px;
-	z-index: 3
-
-}
-.menu_navmob_list{
-	background: #1faae2;
-	opacity: .7;
-	padding: 10px 0;
-}
-.menu_navmob_list:hover{
-	opacity: .9;
-	transition: .3s;
-}
-.menu_navmob_link{
-	text-decoration: none;
-	color: #fff;
-	padding: 0 10px;
 }
 
 .header_logo{
@@ -102,8 +68,13 @@ body{
 	text-align: center;
 }
 .fa-search{
+	color: grey;
 	width: 25px;
 	padding-right: 13px;
+	z-index: 9;
+}
+.fa-search:hover{
+	color: #3687c4;
 }
 .header_contacts_map{
 	border-right: 1px solid #bcbec3;
@@ -204,7 +175,4 @@ body{
 .header_show_phone::after {
     border-top: 10px solid white;
     bottom: -17px; 
-}
-hr{
-	margin: 0;
 }

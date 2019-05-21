@@ -10,7 +10,7 @@
 	}
 }	
 @media screen and (max-width: 1150px){
-	.menu_nav_mob{
+	.fa-bars{
 		display: block;
 	}
 	.header{
