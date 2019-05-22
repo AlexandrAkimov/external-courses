@@ -1,0 +1,146 @@
+.main_content{
+	display: flex;
+	height: 100vh - 104px;
+	align-items: stretch;
+}
+.main_sidebar{
+	display: flex;
+	flex-direction: column;
+	background-color: #181e2c;
+	align-items: stretch;
+	width: 200px;
+
+}
+.sidebar_place_button{
+	width: 200px;
+	margin-bottom: 4px;
+	display: flex;
+	justify-content: center;
+	background-color: #1f2637;
+	height: 116px;
+	align-items: center;
+}
+.sidebar_add_button{
+	cursor: pointer;
+	display: flex;
+	justify-content: space-around;
+	color: #fff;
+	border-color: #f2795a;
+	align-items: center;
+	background-color: #f2795a;
+	width: 160px;
+	height: 44px;
+	border-radius: 4px;
+}
+.sidebar_add_button:hover{
+	background-color: #f2787c;
+}
+.fa-plus{
+	color: #fff;
+}
+.add_button_title{
+	padding-left: 5px;
+	padding-bottom: 0;
+	color: #fff;
+	font-family: "Proxima Nova";
+	font-weight: 700;
+	font-size: 14px;
+	line-height: 26px;
+}
+.sidebar_place_component{
+	width: 100%;
+	margin-bottom: 4px;
+	display: flex;
+	background-color: #1f2637;
+}
+.sidebar_filter_list{
+	width: 100%;
+	list-style: none;
+	margin: 0;
+	padding-left: 0;
+}
+.sidebar_filter_item{
+	cursor: pointer;
+	width: 100%;
+	padding-top: 10px;
+	padding-bottom: 10px;
+}
+.sidebar_filter_item:hover{
+	background-color: #15a4fa;
+	transition: .3s;
+}
+.sidebar_filter_item:hover .sidebar_filter_link{
+	color: #fff;
+	transition: .3s;
+}
+.sidebar_filter_link,
+.sidebar_category_link{
+	padding-left: 15px;
+	color: #78829d;
+	font-family: "Proxima Nova";
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 26px;
+	text-decoration: none;
+}
+.filter_link_text{
+	padding-left: 10px;
+}
+.sidebar_category_list{
+	width: 100%;
+	padding-left: 35px;
+}
+.sidebar_category_link{
+	padding-left: 5px;
+}
+.sidebar_category_item{
+	width: 100%;
+	padding-bottom: 5px;
+	padding-top: 5px;
+}
+.pink{color: #e64c66;}
+.orange{color: #ffab00;}
+.blue{color: #00bfdd;}
+.purple{color: #7874cf;}
+.sidebar_place_history{
+	margin: 0;
+}
+.sidebar_history_list{
+	padding-left: 15px;
+	width: 100%;
+
+}
+.sidebar_history_item{
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	list-style: none;
+	color: #78829d;
+	font-family: "Proxima Nova";
+	font-size: 12px;
+	font-weight: 400;
+	line-height: 18px;
+}
+.sidebar_history_text{
+	top: 0;
+	left: 10px;
+	margin: 0;
+	padding: 0;
+	padding-left: 10px;
+	width: 129px;
+	color: #6f7d95;
+}
+.history_item_title,
+.history_item_autor{
+	color: #97b3ce;
+}
+.sidebar_history_date{
+	padding: 0;
+	margin: 0;
+	padding-left: 20px;
+	padding-top: 15px;
+	padding-bottom: 37px;
+}
+.history_clock{
+	padding-top: 5px;
+}

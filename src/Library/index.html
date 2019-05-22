@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>My Library</title>
+	<script src="https://use.fontawesome.com/d9ddccb34b.js"></script>
+	<link rel="stylesheet" type="text/css" href="header.css">
+	<link rel="stylesheet" type="text/css" href="sidebar.css">
+	<link rel="stylesheet" type="text/css" href="main_content_books.css">
+	<link rel="stylesheet" type="text/css" href="footer.css">
+</head>
+<body>
+	<div id="wrapper_all_content" class="wrapper">
+		<header id="header">
+			<div class="header_support">
+				<a href="" class="header_support_link">help center</a>
+				<div class="header_point"></div>
+				<a href="" class="header_support_link">our support</a>
+			</div>
+			<div class="header_user">
+				<div class="header_user_ava">
+					<img src="images/avatar-01.png" alt="load..." class="user_ava_pic">
+					<span class="user_name">john doe</span>
+				</div>
+				<div class="header_user_menu"><i class="fa fa-chevron-circle-down" aria-hidden="true"></i></div>
+			</div>
+		</header>
+		<section class="main_content">
+			<aside class="main_sidebar">
+				<div class="sidebar_place_button">
+					<button id="add_button" class="sidebar_add_button">
+						<i class="fa fa-plus" aria-hidden="true"></i>ADD A BOOK
+					</button>
+				</div>
+				<div class="sidebar_place_component">
+					<ul class="sidebar_filter_list">
+						<li class="sidebar_filter_item">
+							<a class="sidebar_filter_link" href="#">
+								<i class="fa fa-book" aria-hidden="true"></i>
+								<span class="filter_link_text">Now Reading</span>
+							</a>
+						</li>
+						<li class="sidebar_filter_item">
+							<a class="sidebar_filter_link" href="#">
+								<i class="fa fa-globe" aria-hidden="true"></i>
+								<span class="filter_link_text">Browse</span>
+							</a>
+						</li>
+						<li class="sidebar_filter_item">
+							<a class="sidebar_filter_link" href="#">
+								<i class="fa fa-shopping-cart" aria-hidden="true"></i>
+								<span class="filter_link_text">Buy Books</span>
+							</a>
+						</li>
+						<li class="sidebar_filter_item">
+							<a class="sidebar_filter_link" href="#">
+								<i class="fa fa-star" aria-hidden="true"></i>
+								<span class="filter_link_text">Favourite Books</span>
+							</a>
+						</li>
+						<li class="sidebar_filter_item">
+							<a class="sidebar_filter_link" href="#">
+								<i class="fa fa-th-list" aria-hidden="true"></i>
+								<span class="filter_link_text">Wishlist</span>
+							</a>
+						</li>
+						<li class="sidebar_filter_item">
+							<a class="sidebar_filter_link" href="#">
+								<i class="fa fa-clock-o" aria-hidden="true"></i>
+								<span class="filter_link_text">History</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="sidebar_place_component">
+					<ul class="sidebar_category_list">
+						<li id="mustRead" class="sidebar_category_item pink"><a id="mustReadLink" class="sidebar_category_link" href="#">Must Read Titles</a></li>
+						<li id="bests" class="sidebar_category_item orange"><a class="sidebar_category_link" href="#">Best Of List</a></li>
+						<li id="classic" class="sidebar_category_item blue"><a class="sidebar_category_link" href="#">Classic Novels</a></li>
+						<li id="non_fiction" class="sidebar_category_item purple"><a class="sidebar_category_link" href="#">Non Fiction</a></li>
+					</ul>
+				</div>
+				<div class="sidebar_place_component">
+					<ul class="sidebar_history_list" id="history_list">
+					</ul>
+				</div>
+			</aside>
+			<div class="main_library">
+				<div class="main_library_title">
+					<h3 class="library_title_text">Browse Available Books</h3>
+				</div>
+				<hr class="main_library_line">
+				<nav class="main_library_nav">
+					<div class="library_nav_category">
+						<ul class="nav_category_list">
+							<li class="nav_category_item active">All Books</li>
+							<li class="nav_category_item">Most Recent</li>
+							<li class="nav_category_item">Most Popular</li>
+							<li class="nav_category_item">Free Books</li>
+						</ul>
+					</div>
+					<div class="library_nav_search">
+						<input class="nav_search_field" type="text" placeholder="Enter Keywords"><i class="fa fa-search" aria-hidden="true"></i>
+					</div>
+				</nav>
+				<div class="main_library_content" id="scroll"></div>
+			</div>
+		</section>
+		<footer id="footer">
+			<div class="footer_place_questions">
+				<i class="fa fa-question-circle" aria-hidden="true"></i>
+			</div>
+			<div class="footer_place_settings">
+				<i class="fa fa-cog" aria-hidden="true"></i>
+			</div>
+		</footer>
+	</div>
+	<div id="main_form_block">
+		<div class="main_form_content">
+			<form id="main_form" accept-charset="utf-8">
+				<p>
+				<label class="label_title">Title of a book</label>
+				<input id="form_title_book" type="text" name="title" placeholder="Enter title your book">
+				</p>
+				<hr class="form_line">
+				<p>
+				<label class="label_autor">First Name of a book</label>
+				<input id="form_autorFirstName_book" type="text" placeholder="Enter autor first name">
+				</p>
+				<p>
+				<label class="label_autor">Last Name of a book</label>
+				<input id="form_autorLastName_book" type="text" placeholder="Enter autor last name">
+				</p>
+				<hr class="form_line">
+				<p>
+				<label for="form_image_photo" class="label_photo">Book cover</label>
+				<input id="form_image_photo" type="url" name="pic" placeholder="Enter URL of cover book">
+				</p>
+				<hr class="form_line">
+				<p>
+					<label class="label_rating">Select rating</label>
+					<select id="form_rating_book">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+					</select>
+				</p>
+				<button id="form_button_back" type="button">Back to site</button>
+				<button id="form_submit" type="button" value="Add Book">Add a book</button>
+
+			</form>
+		</div>
+	</div>
+	<script type="text/javascript" src="initial.js"></script>
+	<script type="text/javascript" src="renderBooks.js"></script>
+	<script type="text/javascript" src="filterCategory.js"></script>
+	<script type="text/javascript" src="history.js"></script>
+</body>
+</html>
