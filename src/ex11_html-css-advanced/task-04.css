@@ -2,7 +2,7 @@
 	max-width: 1320px;
 	margin: auto;
 }
-#header{
+.main_header{
 	background-color: #2f364a; 
 	display: flex;
 	justify-content: flex-end;
@@ -42,12 +42,12 @@
 	padding-right: 10px;
 }
 .user_name{
-color: #ffffff;
-font-family: "Proxima Nova";
-font-size: 13px;
-font-weight: 400;
-line-height: 26px;
-text-transform: capitalize;
+	color: #ffffff;
+	font-family: "Proxima Nova";
+	font-size: 13px;
+	font-weight: 400;
+	line-height: 26px;
+	text-transform: capitalize;
 }
 .header_user_menu{
 	padding-right: 15px;
@@ -64,9 +64,6 @@ text-transform: capitalize;
 	background-color: #181e2c;
 	width: 200px;
 }
-.main_library{
-
-}
 .sidebar_place_button{
 	width: 100%;
 	margin-bottom: 4px;
@@ -78,7 +75,9 @@ text-transform: capitalize;
 }
 .sidebar_add_button{
 	display: flex;
-	justify-content: center;
+	justify-content: space-around;
+	color: #fff;
+	border-color: #f2795a;
 	align-items: center;
 	background-color: #f2795a;
 	width: 160px;
@@ -97,9 +96,7 @@ text-transform: capitalize;
 	font-size: 14px;
 	line-height: 26px;
 }
-.sidebar_place_filter,
-.sidebar_place_category,
-.sidebar_place_history{
+.sidebar_place_component{
 	width: 100%;
 	margin-bottom: 4px;
 	display: flex;
