@@ -1,0 +1,41 @@
+.main_form{
+	display: flex;
+	margin: auto;
+	margin-top: 40px;
+	width: 400px;
+	justify-content: space-between;
+	flex-wrap: wrap;
+}
+.title{
+	width: 100%;
+}
+.box_input{
+	position: relative;
+	margin-bottom: 15px;
+}
+.box_input label{
+	position: absolute;
+	top: 0;
+	left: 0;
+	color: #c4c9c9;
+	transition: .5s;
+	pointer-events: none;
+}
+.box_input input:focus ~label,
+.box_input input:valid ~label{
+	top: -14px;
+	font-size: 12px;
+	color: #33d3fe;
+}
+.box_input input:not(:focus) ~label{
+	color: grey;
+}
+.input_title{
+	width: 100%;
+}
+.input_price{
+	width: 100px;
+}
+.input_specific{
+	width: 250px;
+}
