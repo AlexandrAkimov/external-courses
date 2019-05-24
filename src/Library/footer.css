@@ -1,0 +1,74 @@
+#footer{
+	display: flex;
+	position: sticky;
+	justify-content: flex-end;
+	bottom: 0;
+	background-color: #181e2c;
+	border-radius: 0 0 5px 5px;
+	width: 100%;
+	height: 52px;
+}
+.footer_place_questions,
+.footer_place_settings{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #1f2637;
+	width: 70px;
+	height: 100%;
+	color: #fff;
+}
+.footer_place_settings{
+	background-color: #15a4fa;
+	border-radius: 0 0 5px 0;
+
+}
+
+#main_form_block{
+	position: absolute;
+	top: 0;
+	display: none;
+	height: 100vh;
+	width: 100vw;
+	background: rgba(0,0,0,0.8);
+}
+.main_form_content{
+	height: 100vh;
+	width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+#main_form{
+	position: relative;
+	width: 400px;
+	color: #fff;
+}
+#form_title_book,
+#form_autor_book,
+#form_image_photo,
+#form_submit{
+	position: absolute;
+	right: 0;
+}
+#form_submit{
+	width: 100px;
+	background: aqua;
+}
+
+
+.library_content_book:hover i:before {
+    content: "\f005";
+}
+
+.library_content_book:hover i:hover:before {
+    content: "\f005";
+}
+
+.library_content_book:hover i:hover ~ i:before {
+    content: "\f006";
+}
+
+i { 
+  cursor: pointer;
+}
