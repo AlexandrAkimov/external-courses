@@ -1,0 +1,19 @@
+.column1,
+.column2,
+.column4{
+	width: 150px;
+}
+.column3{
+	width: 200px;
+}
+.rows_table:nth-child(odd){
+	background: #f2f6fa;
+}
+.rows_table:nth-child(even){
+	background: #e3eaf3;
+}
+.rows_table:hover{
+	background: #dedede;
+	transition: .3s;
+	cursor: pointer;
+}

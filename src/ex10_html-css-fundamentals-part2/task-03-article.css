@@ -1,0 +1,19 @@
+.content_article{
+	display: flex;
+	justify-content: space-between;
+}
+.content_article_block{
+	display: flex;
+}
+.block_text_content{
+	width: 386px;
+	text-align: justify;
+	font-family: "Open Sans";
+	color: #6d6e71;
+	font-size: 16px;
+}
+.block_text_title{
+	font-family: "Open Sans";
+	font-size: 26px;
+	color: #6d6e71;
+}
