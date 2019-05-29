@@ -1,12 +1,17 @@
 var model = {
-	renderBooks: function(){
+  state : {
+      books : loadingBooks(),
+      activeFilter : '',
+      search : ''
+    },
+	updateBooks: function(){
 		view.clearBooks();
-		for (var i = 0; i < state.books.length; i++) {
-			myContentBookImage = state.books[i].image_url;
-    		myContentBookTitle = state.books[i].title;
-    		myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    		myContentRatingNum = state.books[i].rating;
-    		state.books[i].filterCategory = 'allBooks';
+		for (var i = 0; i < this.state.books.length; i++) {
+			myContentBookImage = this.state.books[i].image_url;
+    		myContentBookTitle = this.state.books[i].title;
+    		myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    		myContentRatingNum = this.state.books[i].rating;
+    		this.state.books[i].filterCategory = 'allBooks';
     		view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 		}
 	},
@@ -39,74 +44,63 @@ var model = {
     			resRating = 5;
     		}    		
 		}
-		for (var i = 0; i < state.books.length; i++) {
-			myContentBookImage = state.books[i].image_url;
-    		myContentBookTitle = state.books[i].title;
-    		myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    		if(i === targetBook){
-    			state.books[i].rating = resRating;
-    			view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, resRating);
+		for (var i = 0; i < this.state.books.length; i++) {
+			myContentBookImage = this.state.books[i].image_url;
+    	myContentBookTitle = this.state.books[i].title;
+    	myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    	if(i === targetBook){
+    		this.state.books[i].rating = resRating;
+    		view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, resRating);
 			} else {
-				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, state.books[i].rating);
-			}
-    	}    		
-	},
-	showFormAddingBook : function(){
-		view.showForm();
-	},
-	disableFormAddingBook : function(){
-		view.disableForm();
+				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, this.state.books[i].rating);
+		  }
+    }   		
 	},
 	addingBookToPage : function(){
-		var titleBook = document.getElementById('form_title_book');
-		var formCoverBook = document.getElementById('form_image_photo');
-		var authorBookFirstName = document.getElementById('form_autorFirstName_book');
-		var authorBookLastName = document.getElementById('form_autorLastName_book');
-		var ratingBook = document.getElementById('form_rating_book');
 		var date = new Date();
 		var dateMs = Date.now() - date.getMilliseconds();
 		console.log(dateMs);
-		state.books.push({
-			"title" : titleBook.value,
-			"image_url" : formCoverBook.value,
+		this.state.books.push({
+			"title" : view.initialDom.titleBook.value,
+			"image_url" : view.initialDom.formCoverBook.value,
 			"author" : {
-				"firstName" : authorBookFirstName.value,
-				"lastName" : authorBookLastName.value
+				"firstName" : view.initialDom.authorBookFirstName.value,
+				"lastName" : view.initialDom.authorBookLastName.value
 			},
-			"rating" : ratingBook.value,
+			"rating" : view.initialDom.ratingBook.value,
 			"createdAt" : date,
 			"updatedAt" : dateMs,
-			"id" : state.books.length + 1
+			"id" : this.state.books.length + 1
 		});
-		renderHistory();
+		updateHistory();
 		view.disableForm();
 		view.clearBooks();
-		for (var i = 0; i < state.books.length; i++) {
-			myContentBookImage = state.books[i].image_url;
-    		myContentBookTitle = state.books[i].title;
-    		myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    		myContentRatingNum = state.books[i].rating;
+		for (var i = 0; i < this.state.books.length; i++) {
+			myContentBookImage = this.state.books[i].image_url;
+    		myContentBookTitle = this.state.books[i].title;
+    		myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    		myContentRatingNum = this.state.books[i].rating;
     		view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 		}
 		
 	},
 	showCategoryBooks : function(category){
 		view.clearBooks();
-		for (var i = 0; i < state.books.length; i++) {
-			for (var c = 0; c < state.books[i].categories.length; c++) {
-      			if(state.books[i].categories[c] === category){
-      				myContentBookImage = state.books[i].image_url;
-        			myContentBookTitle = state.books[i].title;
-        			myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-        			myContentRatingNum = state.books[i].rating;
+		for (var i = 0; i < this.state.books.length; i++) {
+			for (var c = 0; c < this.state.books[i].categories.length; c++) {
+      			if(this.state.books[i].categories[c] === category){
+      				myContentBookImage = this.state.books[i].image_url;
+        			myContentBookTitle = this.state.books[i].title;
+        			myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+        			myContentRatingNum = this.state.books[i].rating;
         			view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 				}
 			}
 		}
 	},
 	sortBooks : function(){
-		for (var i = 0; i < state.books.length; i++) {
-			state.books[i].filterCategory = '';
+		for (var i = 0; i < this.state.books.length; i++) {
+			this.state.books[i].filterCategory = '';
 		}
 		var target = event.target;
 		var menuItems = document.querySelectorAll('.nav_category_list li');
@@ -114,47 +108,47 @@ var model = {
    			if (menuItems[j] === target) {
       			menuItems[j].classList.add('active');
       		if(menuItems[0] === target){
-      			state.activeFilter = 'allBooks';
+      			this.state.activeFilter = 'allBooks';
       		} else if (menuItems[1] === target){
-      			state.activeFilter = 'mostRecent';
+      			this.state.activeFilter = 'mostRecent';
       		} else if (menuItems[2] === target){
-      			state.activeFilter = 'mostPopular';
+      			this.state.activeFilter = 'mostPopular';
       		} else if (menuItems[3] === target) {
-      			state.activeFilter = 'freeBooks';
+      			this.state.activeFilter = 'freeBooks';
       		}
       		continue;
     		}
     		menuItems[j].classList.remove('active');
   		}
-  		if (state.activeFilter === 'freeBooks') {
+  		if (this.state.activeFilter === 'freeBooks') {
   			view.clearBooks();
-  			for (i = 0; i < state.books.length; i++) {
-  				if(state.books[i].cost < 200){
-  					myContentBookImage = state.books[i].image_url;
-    				myContentBookTitle = state.books[i].title;
-    				myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    				myContentRatingNum = state.books[i].rating;
-    				state.books[i].filterCategory = 'freeBooks';
+  			for (i = 0; i < this.state.books.length; i++) {
+  				if(this.state.books[i].cost < 200){
+  					myContentBookImage = this.state.books[i].image_url;
+    				myContentBookTitle = this.state.books[i].title;
+    				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    				myContentRatingNum = this.state.books[i].rating;
+    				this.state.books[i].filterCategory = 'freeBooks';
     				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
   				}
   			}
-  		} else if (state.activeFilter === 'mostPopular') {
+  		} else if (this.state.activeFilter === 'mostPopular') {
   			view.clearBooks();
-  			for (i = 0; i < state.books.length; i++) {
-  				if(((state.books[i].rating === 4) || (state.books[i].rating === 5)) && state.books[i].cost >= 200 ){
-  					myContentBookImage = state.books[i].image_url;
-    				myContentBookTitle = state.books[i].title;
-    				myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    				myContentRatingNum = state.books[i].rating;
-    				state.books[i].filterCategory = 'mostPopular';
+  			for (i = 0; i < this.state.books.length; i++) {
+  				if(((this.state.books[i].rating === 4) || (this.state.books[i].rating === 5)) && this.state.books[i].cost >= 200 ){
+  					myContentBookImage = this.state.books[i].image_url;
+    				myContentBookTitle = this.state.books[i].title;
+    				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    				myContentRatingNum = this.state.books[i].rating;
+    				this.state.books[i].filterCategory = 'mostPopular';
     				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
   				}
   			}
-  		} else if (state.activeFilter === 'mostRecent'){
+  		} else if (this.state.activeFilter === 'mostRecent'){
   			view.clearBooks();
   			var arrayUpdateAt = []
-  			for (i = 0; i < state.books.length; i++) {
-  				arrayUpdateAt.push(state.books[i].updatedAt)
+  			for (i = 0; i < this.state.books.length; i++) {
+  				arrayUpdateAt.push(this.state.books[i].updatedAt)
   				arrayUpdateAt.sort(function(a,b){ 
   					return b - a;
 				})
@@ -162,68 +156,68 @@ var model = {
 			console.log(arrayUpdateAt);
 			var idBook = 0;
 			for (var j = 0; j < arrayUpdateAt.length; j++) {
-			 	for(i = 0; i < state.books.length; i++) {
-			 		if((state.books[i].updatedAt === arrayUpdateAt[0]) && (state.books[i].id !== idBook)){
-			 			idBook = state.books[i].id;			 			
-			 			myContentBookImage = state.books[i].image_url;
-    					myContentBookTitle = state.books[i].title;
-    					myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    					myContentRatingNum = state.books[i].rating;
-    					state.books[i].filterCategory = 'mostRecent';
+			 	for(i = 0; i < this.state.books.length; i++) {
+			 		if((this.state.books[i].updatedAt === arrayUpdateAt[0]) && (this.state.books[i].id !== idBook)){
+			 			idBook = this.state.books[i].id;			 			
+			 			myContentBookImage = this.state.books[i].image_url;
+    					myContentBookTitle = this.state.books[i].title;
+    					myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    					myContentRatingNum = this.state.books[i].rating;
+    					this.state.books[i].filterCategory = 'mostRecent';
     					view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
     					arrayUpdateAt.shift();
     					i = 0;
 			 		}  				
   				}
 			} 
-  		} else if (state.activeFilter === 'allBooks'){
-  			this.renderBooks();
+  		} else if (this.state.activeFilter === 'allBooks'){
+  			this.updateBooks();
   		}
 
 	},
 	globalSearch : function(){
 		view.clearBooks();
 		var searchField = document.getElementById('nav_search_field');
-		state.search = searchField.value;
-		if(state.search){
-			for (var i = 0; i < state.books.length; i++) {
-				console.log(state.books[i].filterCategory)
-				if (((state.books[i].title.indexOf(state.search) >= 0) || (state.books[i].author.firstName.indexOf(state.search) >= 0) || (state.books[i].author.lastName.indexOf(state.search) >= 0)) && (state.books[i].filterCategory === 'mostPopular')) {
-					myContentBookImage = state.books[i].image_url;
-    				myContentBookTitle = state.books[i].title;
-    				myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    				myContentRatingNum = state.books[i].rating;
+		this.state.search = searchField.value;
+		if(this.state.search){
+			for (var i = 0; i < this.state.books.length; i++) {
+				console.log(this.state.books[i].filterCategory)
+				if (((this.state.books[i].title.indexOf(this.state.search) >= 0) || (this.state.books[i].author.firstName.indexOf(this.state.search) >= 0) || (this.state.books[i].author.lastName.indexOf(this.state.search) >= 0)) && (this.state.books[i].filterCategory === 'mostPopular')) {
+					myContentBookImage = this.state.books[i].image_url;
+    				myContentBookTitle = this.state.books[i].title;
+    				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    				myContentRatingNum = this.state.books[i].rating;
     				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
-				} else if (((state.books[i].title.indexOf(state.search) >= 0) || (state.books[i].author.firstName.indexOf(state.search) >= 0) || (state.books[i].author.lastName.indexOf(state.search) >= 0)) && (state.books[i].filterCategory === 'freeBooks')){
-					myContentBookImage = state.books[i].image_url;
-    				myContentBookTitle = state.books[i].title;
-    				myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    				myContentRatingNum = state.books[i].rating;
+				} else if (((this.state.books[i].title.indexOf(this.state.search) >= 0) || (this.state.books[i].author.firstName.indexOf(this.state.search) >= 0) || (this.state.books[i].author.lastName.indexOf(this.state.search) >= 0)) && (this.state.books[i].filterCategory === 'freeBooks')){
+					myContentBookImage = this.state.books[i].image_url;
+    				myContentBookTitle = this.state.books[i].title;
+    				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    				myContentRatingNum = this.state.books[i].rating;
     				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
-				} else if(((state.books[i].title.indexOf(state.search) >= 0) || (state.books[i].author.firstName.indexOf(state.search) >= 0) || (state.books[i].author.lastName.indexOf(state.search) >= 0)) && (state.books[i].filterCategory === 'mostRecent')) {
-					myContentBookImage = state.books[i].image_url;
-    				myContentBookTitle = state.books[i].title;
-    				myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    				myContentRatingNum = state.books[i].rating;
+				} else if(((this.state.books[i].title.indexOf(this.state.search) >= 0) || (this.state.books[i].author.firstName.indexOf(this.state.search) >= 0) || (this.state.books[i].author.lastName.indexOf(this.state.search) >= 0)) && (this.state.books[i].filterCategory === 'mostRecent')) {
+					myContentBookImage = this.state.books[i].image_url;
+    				myContentBookTitle = this.state.books[i].title;
+    				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    				myContentRatingNum = this.state.books[i].rating;
     				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
-				} else if (((state.books[i].title.indexOf(state.search) >= 0) || (state.books[i].author.firstName.indexOf(state.search) >= 0) || (state.books[i].author.lastName.indexOf(state.search) >= 0)) && (state.books[i].filterCategory === 'allBooks')) {
-					myContentBookImage = state.books[i].image_url;
-    				myContentBookTitle = state.books[i].title;
-    				myContentBookAutor = "by " + state.books[i].author.firstName + " " + state.books[i].author.lastName;
-    				myContentRatingNum = state.books[i].rating;
+				} else if (((this.state.books[i].title.indexOf(this.state.search) >= 0) || (this.state.books[i].author.firstName.indexOf(this.state.search) >= 0) || (this.state.books[i].author.lastName.indexOf(this.state.search) >= 0)) && (this.state.books[i].filterCategory === 'allBooks')) {
+					myContentBookImage = this.state.books[i].image_url;
+    				myContentBookTitle = this.state.books[i].title;
+    				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+    				myContentRatingNum = this.state.books[i].rating;
     				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 				}
 			}	
-		} else if (!state.search && state.activeFilter === 'freeBooks'){
+		} else if (!this.state.search && this.state.activeFilter === 'freeBooks'){
 			this.sortBooks();
-		} else if (!state.search && state.activeFilter === 'mostRecent'){
+		} else if (!this.state.search && this.state.activeFilter === 'mostRecent'){
 			this.sortBooks();
-		} else if (!state.search && state.activeFilter === 'mostPopular'){
+		} else if (!this.state.search && this.state.activeFilter === 'mostPopular'){
 			this.sortBooks();
-		} else if (!state.search && state.activeFilter === 'allBooks'){
+		} else if (!this.state.search && this.state.activeFilter === 'allBooks'){
 			this.sortBooks();
 		} else {
-			this.renderBooks();
+			this.updateBooks();
 		}
 
 	}

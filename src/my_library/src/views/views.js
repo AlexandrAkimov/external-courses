@@ -1,4 +1,45 @@
 var view = {
+  handleEvent: function(){
+      controller.handleClick();
+
+      var libraryContentBooks = document.getElementById('scroll');
+      libraryContentBooks.addEventListener('click', function(event){
+        controller.handleStar();
+      });
+
+      var addButton = document.getElementById('add_button');
+      addButton.addEventListener('click', controller.handleAddBook);
+
+      var formBackButton = document.getElementById('form_button_back');
+      formBackButton.addEventListener('click', controller.handleBackButton);
+
+      var buttonAddingBook = document.getElementById('form_submit');
+      buttonAddingBook.addEventListener('click', controller.handleFormAddButton);
+
+      var mustRead = document.getElementById('mustRead');
+      mustRead.addEventListener('click', controller.handleMustRead);
+      var bests = document.getElementById('bests');
+      bests.addEventListener('click', controller.handleBest);
+      var classic = document.getElementById('classic');
+      classic.addEventListener('click', controller.handleClassic);
+      var nonFiction = document.getElementById('non_fiction');
+      nonFiction.addEventListener('click', controller.handleNonFiction);
+
+      var menuList = document.getElementById('nav_menu_list');
+      menuList.addEventListener('click', function(event){
+        controller.handleMenu();
+      });
+
+      var searchField = document.getElementById('nav_search_field');
+      searchField.addEventListener('keyup', controller.enterField);
+    },
+  initialDom : {
+    titleBook : document.getElementById('form_title_book'),
+    formCoverBook : document.getElementById('form_image_photo'),
+    authorBookFirstName : document.getElementById('form_autorFirstName_book'),
+    authorBookLastName : document.getElementById('form_autorLastName_book'),
+    ratingBook : document.getElementById('form_rating_book')
+   },
   showBooks : function(image, title, author, rating){
     var libraryContentBooks = document.getElementById('scroll');
     var myLibraryContent = document.createElement('div');
@@ -30,7 +71,7 @@ var view = {
             myContentRating.classList.add("fa-star-o", "fa-star-lib");              
           }
           myLibraryContent.appendChild(myContentRating);
-        }
+      }
   },
   clearBooks : function(){
     var libraryContentBooks = document.getElementById('scroll');

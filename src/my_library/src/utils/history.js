@@ -1,8 +1,8 @@
-function renderHistory(){
+function updateHistory(){
   view.clearHistory();
-  for (var i = 0; i < state.books.length; i++) {
-    if(state.books.length - i < 4) {
-      var historyTime = (Date.now() - state.books[i].createdAt) / 1000 / 60;
+  for (var i = 0; i < this.model.state.books.length; i++) {
+    if(this.model.state.books.length - i < 4) {
+      var historyTime = (Date.now() - this.model.state.books[i].createdAt) / 1000 / 60;
       var historyBookDate = '';
       if(historyTime < 1){
         historyBookDate = "just added"
@@ -24,8 +24,8 @@ function renderHistory(){
       } else if (historyTime > 518400){
           historyBookDate = " over a year ago"
       }
-      historyBookTitle = state.books[i].title;
-      historyBookAuthor = state.books[i].author.firstName + " " + state.books[i].author.lastName;
+      historyBookTitle = this.model.state.books[i].title;
+      historyBookAuthor = this.model.state.books[i].author.firstName + " " + this.model.state.books[i].author.lastName;
       view.showHistory(historyBookDate, historyBookTitle, historyBookAuthor);
     }
   }

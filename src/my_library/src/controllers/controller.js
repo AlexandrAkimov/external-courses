@@ -1,18 +1,16 @@
 var controller = {
   handleClick : function(){
-    var el = document.getElementById('show_books');
-    el.remove();
-    model.renderBooks();
-    renderHistory();
+    model.updateBooks();
+    updateHistory();
   },
   handleStar : function(){
     model.updateRating();
   },
   handleAddBook : function(){
-    model.showFormAddingBook();
+    view.showForm();
   },
   handleBackButton : function(){
-    model.disableFormAddingBook();
+    view.disableForm();
   },
   handleFormAddButton : function(){
     model.addingBookToPage();
