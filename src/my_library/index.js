@@ -1,7 +1,7 @@
 (function(){
 	var app = {
 		init : function(){
-			view.handleEvent();
+			view.events();
 		}
 	}
 	app.init();

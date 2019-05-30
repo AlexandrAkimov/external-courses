@@ -1,7 +1,6 @@
 var view = {
-  handleEvent: function(){
+  events: function(){
       controller.handleClick();
-
       var libraryContentBooks = document.getElementById('scroll');
       libraryContentBooks.addEventListener('click', function(event){
         controller.handleStar();

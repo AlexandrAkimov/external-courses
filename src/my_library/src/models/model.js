@@ -5,19 +5,19 @@ var model = {
       search : ''
     },
 	updateBooks: function(){
-		view.clearBooks();
+		controller.receiveModelClearBooks();
 		for (var i = 0; i < this.state.books.length; i++) {
 			myContentBookImage = this.state.books[i].image_url;
     		myContentBookTitle = this.state.books[i].title;
     		myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     		myContentRatingNum = this.state.books[i].rating;
     		this.state.books[i].filterCategory = 'allBooks';
-    		view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    		controller.receiveModelUpdateBook(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 		}
 	},
 	updateRating : function(){
 		myContentRating = document.querySelectorAll('.fa-star-lib');
-		view.clearBooks();
+		controller.receiveModelClearBooks();
 		var target = event.target;
     	if (target.classList.contains('fa')) {
       		for (i = 0; i < myContentRating.length; i++){
@@ -50,9 +50,9 @@ var model = {
     	myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     	if(i === targetBook){
     		this.state.books[i].rating = resRating;
-    		view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, resRating);
+    		controller.receiveModelUpdateStar(myContentBookImage, myContentBookTitle, myContentBookAutor, this.state.books[i].rating);
 			} else {
-				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, this.state.books[i].rating);
+				controller.receiveModelUpdateStar(myContentBookImage, myContentBookTitle, myContentBookAutor, this.state.books[i].rating);
 		  }
     }   		
 	},
@@ -72,20 +72,33 @@ var model = {
 			"updatedAt" : dateMs,
 			"id" : this.state.books.length + 1
 		});
-		updateHistory();
-		view.disableForm();
-		view.clearBooks();
+		controller.receiveModelUpdateHistory();
+		controller.receiveModelDisableForm();
+		controller.receiveModelClearBooks();
 		for (var i = 0; i < this.state.books.length; i++) {
 			myContentBookImage = this.state.books[i].image_url;
     		myContentBookTitle = this.state.books[i].title;
     		myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     		myContentRatingNum = this.state.books[i].rating;
-    		view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    		controller.receiveModelAddingBook(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 		}
 		
 	},
+  updateHistory : function(){
+    controller.receiveClearHistory();
+    for (var i = 0; i < this.state.books.length; i++) {
+      var historyTime = (Date.now() - this.state.books[i].createdAt) / 1000 / 60;
+      var historyBookDate = '';
+      var historyTimeHours = 0;
+      if(this.state.books.length - i < 4) {
+        historyBookTitle = this.state.books[i].title;
+        historyBookAuthor = this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
+        controller.receiveModelUpdateHistory(history(historyTime, historyBookDate), historyBookTitle, historyBookAuthor);
+      }
+    }
+  },
 	showCategoryBooks : function(category){
-		view.clearBooks();
+		controller.receiveModelClearBooks();
 		for (var i = 0; i < this.state.books.length; i++) {
 			for (var c = 0; c < this.state.books[i].categories.length; c++) {
       			if(this.state.books[i].categories[c] === category){
@@ -93,7 +106,7 @@ var model = {
         			myContentBookTitle = this.state.books[i].title;
         			myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
         			myContentRatingNum = this.state.books[i].rating;
-        			view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+        			controller.receiveModelCategoryBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 				}
 			}
 		}
@@ -121,7 +134,7 @@ var model = {
     		menuItems[j].classList.remove('active');
   		}
   		if (this.state.activeFilter === 'freeBooks') {
-  			view.clearBooks();
+  			controller.receiveModelClearBooks();
   			for (i = 0; i < this.state.books.length; i++) {
   				if(this.state.books[i].cost < 200){
   					myContentBookImage = this.state.books[i].image_url;
@@ -129,11 +142,11 @@ var model = {
     				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     				myContentRatingNum = this.state.books[i].rating;
     				this.state.books[i].filterCategory = 'freeBooks';
-    				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    				controller.receiveModelSortBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
   				}
   			}
   		} else if (this.state.activeFilter === 'mostPopular') {
-  			view.clearBooks();
+  			controller.receiveModelClearBooks();
   			for (i = 0; i < this.state.books.length; i++) {
   				if(((this.state.books[i].rating === 4) || (this.state.books[i].rating === 5)) && this.state.books[i].cost >= 200 ){
   					myContentBookImage = this.state.books[i].image_url;
@@ -141,11 +154,11 @@ var model = {
     				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     				myContentRatingNum = this.state.books[i].rating;
     				this.state.books[i].filterCategory = 'mostPopular';
-    				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    				controller.receiveModelSortBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
   				}
   			}
   		} else if (this.state.activeFilter === 'mostRecent'){
-  			view.clearBooks();
+  			controller.receiveModelClearBooks();
   			var arrayUpdateAt = []
   			for (i = 0; i < this.state.books.length; i++) {
   				arrayUpdateAt.push(this.state.books[i].updatedAt)
@@ -164,7 +177,7 @@ var model = {
     					myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     					myContentRatingNum = this.state.books[i].rating;
     					this.state.books[i].filterCategory = 'mostRecent';
-    					view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    					controller.receiveModelSortBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
     					arrayUpdateAt.shift();
     					i = 0;
 			 		}  				
@@ -176,7 +189,7 @@ var model = {
 
 	},
 	globalSearch : function(){
-		view.clearBooks();
+		controller.receiveModelClearBooks();
 		var searchField = document.getElementById('nav_search_field');
 		this.state.search = searchField.value;
 		if(this.state.search){
@@ -187,25 +200,25 @@ var model = {
     				myContentBookTitle = this.state.books[i].title;
     				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     				myContentRatingNum = this.state.books[i].rating;
-    				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    				controller.receiveModelGlobalSearch(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 				} else if (((this.state.books[i].title.indexOf(this.state.search) >= 0) || (this.state.books[i].author.firstName.indexOf(this.state.search) >= 0) || (this.state.books[i].author.lastName.indexOf(this.state.search) >= 0)) && (this.state.books[i].filterCategory === 'freeBooks')){
 					myContentBookImage = this.state.books[i].image_url;
     				myContentBookTitle = this.state.books[i].title;
     				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     				myContentRatingNum = this.state.books[i].rating;
-    				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    				controller.receiveModelGlobalSearch(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 				} else if(((this.state.books[i].title.indexOf(this.state.search) >= 0) || (this.state.books[i].author.firstName.indexOf(this.state.search) >= 0) || (this.state.books[i].author.lastName.indexOf(this.state.search) >= 0)) && (this.state.books[i].filterCategory === 'mostRecent')) {
 					myContentBookImage = this.state.books[i].image_url;
     				myContentBookTitle = this.state.books[i].title;
     				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     				myContentRatingNum = this.state.books[i].rating;
-    				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    				controller.receiveModelGlobalSearch(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 				} else if (((this.state.books[i].title.indexOf(this.state.search) >= 0) || (this.state.books[i].author.firstName.indexOf(this.state.search) >= 0) || (this.state.books[i].author.lastName.indexOf(this.state.search) >= 0)) && (this.state.books[i].filterCategory === 'allBooks')) {
 					myContentBookImage = this.state.books[i].image_url;
     				myContentBookTitle = this.state.books[i].title;
     				myContentBookAutor = "by " + this.state.books[i].author.firstName + " " + this.state.books[i].author.lastName;
     				myContentRatingNum = this.state.books[i].rating;
-    				view.showBooks(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
+    				controller.receiveModelGlobalSearch(myContentBookImage, myContentBookTitle, myContentBookAutor, myContentRatingNum);
 				}
 			}	
 		} else if (!this.state.search && this.state.activeFilter === 'freeBooks'){
@@ -219,6 +232,5 @@ var model = {
 		} else {
 			this.updateBooks();
 		}
-
 	}
 }
